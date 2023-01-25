@@ -7,10 +7,24 @@ public:
     int data;
     Node *next;
 
+    // constructor
     Node(int d)
     {
         this->data = d;
         this->next = NULL;
+    }
+
+    // destructor
+    ~Node()
+    {
+        int value = this->data;
+        // memory free
+        if (this->next != NULL)
+        {
+            delete next;
+            this->next = NULL;
+        }
+        cout << "memory is free for node with data " << value << endl;
     }
 };
 
@@ -33,6 +47,36 @@ void insertionAtMiddle(Node *head, int pos, int c)
     Node *insertAtMiddle = new Node(c);
     insertAtMiddle->next = temp->next;
     temp->next = insertAtMiddle;
+}
+
+void deleteNode(int position, Node *&head)
+{
+    if (position == 1)
+    {
+        // deleting first node
+        Node *temp = head;
+
+        head = head->next;
+        // memory free for start node
+        temp->next = NULL;
+        delete temp;
+    }
+    else
+    {
+        // deleting any node and last node
+        Node *prev;
+        Node *curr = head;
+        int cnt = 1;
+        while (cnt < position)
+        {
+            prev = curr;
+            curr = curr->next;
+            cnt++;
+        }
+        prev->next = curr->next;
+        curr->next = NULL;
+        delete curr;
+    }
 }
 void display(Node *&head)
 {
@@ -65,5 +109,9 @@ int main()
     display(head);
     insertionAtTail(tail, 35);
     display(head);
+
+    deleteNode(6, head);
+    display(head);
+
     return 0;
 }
