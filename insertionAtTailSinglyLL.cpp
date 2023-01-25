@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 class Node
@@ -78,6 +79,24 @@ void deleteNode(int position, Node *&head)
         delete curr;
     }
 }
+void deleteNodeVal(int value, Node *&head)
+{
+    Node *temp = head;
+    if (temp->data == value)
+    {
+        head = head->next;
+        temp->next = NULL;
+        delete temp;
+    }
+    while (temp->next->data != value)
+    {
+        temp = temp->next;
+    }
+    Node *toDelete = temp->next;
+    temp->next = temp->next->next;
+    toDelete->next = NULL;
+    delete toDelete;
+}
 void display(Node *&head)
 {
     Node *p = head;
@@ -110,8 +129,10 @@ int main()
     insertionAtTail(tail, 35);
     display(head);
 
-    deleteNode(6, head);
-    display(head);
+    // deleteNode(6, head);
+    // display(head);
 
+    deleteNodeVal(10, head);
+    display(head);
     return 0;
 }
