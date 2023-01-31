@@ -14,7 +14,6 @@ int main()
 
     // pop
     s.pop();
-
     cout << "printing top element\t" << s.top() << endl;
 
     if (s.empty())

@@ -11,7 +11,6 @@ void push(struct stack *s)
 {
     if (s->top == size - 1)
         printf("Stack Overflow\n");
-    else
     {
         ++(s->top);
         printf("Enter the data");
