@@ -8,6 +8,7 @@ public:
     Node *prev;
     Node *next;
 
+    // constructor
     Node(int d)
     {
         this->data = d;
@@ -48,37 +49,66 @@ void insertAtHead(Node *&head, int a)
         head->prev = temp;
         head = temp;
     }
+    else
+    {
+        return;
+    }
 }
-void insertAtTail(Node *&head, int a)
+void insertAtTail(Node *&tail, int a)
 {
-    Node *last;
+    Node *newNode = new Node(a);
+    tail->next = newNode;
+    newNode->prev = tail;
+    tail = newNode;
+}
+
+void insertAtPos(Node *&tail, Node *&head, int pos, int z)
+{
     Node *temp = head;
-    while (temp->next != NULL)
+
+    if (pos == 1)
+    {
+        insertAtHead(head, z);
+        return;
+    }
+    int cnt = 1;
+    while (cnt < pos - 1) //-> we have to acess the node before the curr node in the given pos.
     {
         temp = temp->next;
+        cnt++; // increased the cnt by1;
     }
-    last = temp;
-    Node *newNode = new Node(a);
-    last->next = newNode;
-    newNode->prev = last;
-    last = newNode;
+
+    if (temp->next == NULL)
+    {
+        insertAtTail(tail, z);
+        return;
+    }
+    Node *nodeToInsert = new Node(z);
+    nodeToInsert->next = temp->next;
+    temp->next->prev = nodeToInsert;
+    temp->next = nodeToInsert;
+    nodeToInsert->prev = temp;
 }
 int main()
 {
     Node *node1 = new Node(10);
     Node *head = node1;
+    Node *tail = node1;
     print(head);
 
     insertAtHead(head, 11);
     print(head);
 
-    insertAtTail(head, 20);
+    insertAtTail(tail, 20);
     print(head);
 
     insertAtHead(head, 4);
     print(head);
 
-    insertAtTail(head, 6);
+    insertAtTail(tail, 6);
+    print(head);
+
+    insertAtPos(tail, head, 5, 33);
     print(head);
 
     cout << lengthOfLL(head) << endl;
