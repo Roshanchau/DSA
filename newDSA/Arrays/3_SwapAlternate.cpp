@@ -10,6 +10,7 @@ using namespace std;
 //         next+=2;
 //     }
 // }
+
 void S_alt(int arr[] , int n){
     for(int i=0; i<n; i+=2){
         if(i+1<n){
@@ -27,10 +28,10 @@ void print(int arr[] , int n){
 }
 
 int main(){ 
-    int arr[6]={1,2,7,8,5,0};
+    int arr[5]={1,2,7,8,5};
 
-    S_alt(arr,6);
-    print(arr,6);
+    S_alt(arr,5);
+    print(arr,5);
 
     return 0;
 }
