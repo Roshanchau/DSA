@@ -1,30 +1,46 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <math.h>
 using namespace std;
 
-
 // runtime error :(
+// vector<int> findDuplicates(vector<int> &nums)
+// {
+//     int ans = 0;
+//     sort(nums.begin(), nums.end());
+//     vector<int> index;
+//     vector<int>res;
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         ans = ans ^ nums[i] ^ nums[i + 1];
+//         if (ans == 0)
+//         {
+//             ;
+//             index.push_back(i);
+//         }
+//         ans = 0;
+//     }
+//     for(int i=0; i<index.size(); i++){
+//         res.push_back(nums[index[i]]);
+//     }
+//     return res;
+// }
 vector<int> findDuplicates(vector<int> &nums)
 {
-    int ans = 0;
-    sort(nums.begin(), nums.end());
-    vector<int> index;
-    vector<int>res;
+    vector<int> ans;
     for (int i = 0; i < nums.size(); i++)
     {
-        ans = ans ^ nums[i] ^ nums[i + 1];
-        if (ans == 0)
+        if (nums[abs(nums[i]) - 1] < 0)
         {
-            ;
-            index.push_back(i);
+            ans.push_back(abs(nums[i]));
         }
-        ans = 0;
+        else
+        {
+            nums[abs(nums[i]) - 1] = -nums[abs(nums[i]) - 1];
+        }
     }
-    for(int i=0; i<index.size(); i++){
-        res.push_back(nums[index[i]]);
-    }
-    return res;
+    return ans;
 }
 
 void print(vector<int> &arr)
@@ -38,7 +54,7 @@ void print(vector<int> &arr)
 
 int main()
 {
-    vector<int> nums = {4, 3, 2, 8, 8, 2, 3, 1};
+    vector<int> nums = {4, 3, 2, 7, 8, 2, 3, 1};
     print(nums);
     vector<int> ans = findDuplicates(nums);
     print(ans);
