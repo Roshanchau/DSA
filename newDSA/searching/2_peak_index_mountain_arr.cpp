@@ -4,28 +4,18 @@ using namespace std;
 
 int peakIndexInMountainArray(vector<int> &arr)
 {
-    int n = arr.size();
-    int start = 0, end = n - 1;
-    int mid = start + (end - start) / 2;
-    int peak;
-    while (start <= end)
-    {
-        if (arr[mid - 1]<arr[mid] && arr[mid]> arr[mid+1])
-        {
-            peak = mid;
-            start++;
+    int s=0;
+    int e=arr.size()-1;
+    int mid= s+(e-s)/2;
+    while(s<e){
+        if(arr[mid]<arr[mid+1]){
+            s=mid+1;
+        }else{
+            e=mid;
         }
-        if (arr[mid] < arr[mid + 1])
-        {
-            start = mid + 1;
-        }
-        if (arr[mid - 1] > arr[mid])
-        {
-            end = mid - 1;
-        }
-        mid = start + (end - start) / 2;
+        mid= s+(e-s)/2;
     }
-    return peak;
+    return s;
 }
 
 int main()
