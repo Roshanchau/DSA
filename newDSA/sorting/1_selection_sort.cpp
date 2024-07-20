@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-vector<int> selection_sort(vector<int> &arr, int n)
+void selection_sort(vector<int> &arr, int n)
 {
     int i, j;
     for (int i = 0; i < n - 1; i++)
@@ -17,8 +17,6 @@ vector<int> selection_sort(vector<int> &arr, int n)
         }
         swap(arr[i], arr[min]);
     }
-
-    return arr;
 }
 
 void print(vector<int> &arr)
@@ -34,7 +32,7 @@ int main()
 {
     vector<int> arr={32, 20 , 2 , 10 ,9 , 14 ,8};
     print(arr);
-    vector<int> sorted= selection_sort(arr, 7);
-    print(sorted);
+     selection_sort(arr, 7);
+    print(arr);
     return 0;
 }
