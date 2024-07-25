@@ -6,14 +6,17 @@ void bubble_sort(vector<int> &arr, int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
-        int k=0;
-        for (int j = k + 1; j < n; j++)
+        bool swapped=false;
+        for (int j =0; j < n-1-i; j++)
         {
-            if (arr[j] < arr[k])
+            if (arr[j+1] < arr[j])
             {
-                swap(arr[j], arr[k]);
+                swap(arr[j+1], arr[j]);
+                swapped=true;
             }
-            k++;
+        }
+        if(swapped==false){
+            break;
         }
     }
 }
