@@ -4,10 +4,17 @@
  void insertion_sort(int arr[] , int n){
     for( int i=1 ; i<n; i++){
         int k=arr[i];
-        for( int j=i-1; j>=0 && k<arr[j]; j--){
-            arr[j+1]=arr[j];
-            arr[j]=k;
+        int j=i-1;
+        for( ; j>=0 ; j--){
+            if(arr[j]>k){
+                arr[j+1]=arr[j];
+            }
+            else{
+                break;
+            }
         }
+        cout<<"hehe this is j haita: "<<j<<endl;
+        arr[j+1]=k;
     }
  }
 
