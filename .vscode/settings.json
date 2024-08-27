@@ -3,6 +3,9 @@
     "files.associations": {
         "iostream": "cpp",
         "ostream": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "array": "cpp",
+        "initializer_list": "cpp",
+        "utility": "cpp"
     }
 }
