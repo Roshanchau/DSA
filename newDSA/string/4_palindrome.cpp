@@ -32,7 +32,7 @@ bool palindrome(char s[]){
 
 int main(){
     char s[20];
-    cout<<"enter your string"<<endl;
+    cout<<"enter your string okay"<<endl;
     cin>>s;
     bool haha=palindrome(s);
     if(haha){
