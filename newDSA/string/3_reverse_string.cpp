@@ -8,9 +8,6 @@ int getLength(char name[]){
         len++;
         i++;
     }
-
-    
-
     return len;
 }
 

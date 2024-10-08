@@ -2,35 +2,53 @@
 using namespace std;
 
 
-int getLength(char name[]){
+int getLength(char st[]){
     int len=0 , i=0;
 
-    while(name[i]!='\0'){
+    while(st[i]!='\0'){
         len++;
         i++;
     }
     return len;
 }
 
-
-void reverse_string(char str[]){
-    cout<<"hello";
-    int i=0;
-    int n=getLength(str);
-    cout<<"this is length"<<n;
-    while(i<n/2){
-        cout<<"this is inside rev loop->"<<i<<"->"<<str[i]<<endl;
-        swap(str[n-i-1] , str[i]);
+void reverse_string(char str[] ,int i ,int n){
+    cout<<"i=>"<<i<<endl;
+    cout<<"n=>"<<n<<endl;
+    int k=i+n;
+    while(i<k/2){
+        swap(str[k-i-1] , str[i]);
         i++;
     }
 }
 
-
-void print(string str){
-    cout<<"trying to print res"<<endl;
+void reverse_words(char str[] ){
+    int n=getLength(str);
+    int s=0;
+    int e=0;
     int i=0;
-    int n=str.length();
-    cout<<"this is length"<<n<<endl;
+    reverse_string(str, s , n);
+        while(i<n){
+        cout<<str[i];
+        i++;
+    }
+    cout<<endl;
+    while(e<n){
+        while(str[e]!=' '  && str[e]!='\0'){
+         e++;
+         cout<<"this is e =>"<<e<<endl;
+    }  
+    cout<<"this is e after reaching a space"<<e<<endl;
+    reverse_string(str , s , e);
+        s=e+1;
+        e+=1;
+    }
+}
+
+
+void print(char str[]){
+    int i=0;
+    int n=getLength(str);
     while(i<n){
         cout<<str[i];
         i++;
@@ -40,6 +58,10 @@ void print(string str){
 
 
 int main(){
-    string s="My name is joe";
+    char s[]="My name is joe";
+    print(s);
+    cout<<"after reversing "<<endl;
+    reverse_words(s);
+    print(s);
     return 0;
 }
