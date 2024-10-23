@@ -1,18 +1,26 @@
 #include <iostream>
 using namespace std;
 
+// string replaceSpaces(string str){
+//     string result="";
+//     for(int i=0; i<str.length(); i++){
+//         if(str[i]==' '){
+//             result.push_back('@');
+//             result.push_back('4');
+//             result.push_back('0');
+//         }else{
+//             result.push_back(str[i]);
+//         }
+//     }
+//     return result;
+// }
 string replaceSpaces(string str){
-    string result="";
     for(int i=0; i<str.length(); i++){
         if(str[i]==' '){
-            result.push_back('@');
-            result.push_back('4');
-            result.push_back('0');
-        }else{
-            result.push_back(str[i]);
+            str.replace(i, 1, "@40");
         }
     }
-    return result;
+    return str;
 }
 
 void print(string str){
@@ -28,7 +36,7 @@ void print(string str){
 int main(){
     string str;
     cout << "Enter your string: ";
-    getline(cin, str); //only cin stops taking input after it encounters a space or line break
+    getline(cin, str); //cin can only input strings without spaces and line breaks so we use getline.
     print(str);
     string res=replaceSpaces(str);
     cout<<"After replacing spaces: "<<endl;
