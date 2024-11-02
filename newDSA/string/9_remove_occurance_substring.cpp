@@ -3,15 +3,16 @@ using namespace std;
 
 // easy solution(yt)
 
-string removeOccSubStr(string str, string part){   
-    while(str.length()!=0 && str.find(part)<str.length()){
-        str.erase(str.find(part) , part.length());
+string removeOccSubStr(string str, string part)
+{
+    while (str.length() != 0 && str.find(part) < str.length())
+    {
+        str.erase(str.find(part), part.length());
     }
     return str;
 }
 
-//my solution. 
-
+// my solution.
 
 // string removeOccSubStr(string str, string part){
 //     cout<<"hello"<<endl;
@@ -49,25 +50,28 @@ string removeOccSubStr(string str, string part){
 //     return str;
 // }
 
-void print(string str){
-    int i=0;
-    int n=str.length();
-    while(i<n){
-        cout<<str[i];
+void print(string str)
+{
+    int i = 0;
+    int n = str.length();
+    while (i < n)
+    {
+        cout << str[i];
         i++;
     }
-    cout<<endl;
+    cout << endl;
 }
 
-int main(){
+int main()
+{
     string s;
-    cout<<"Enter the srting: "<<endl;
-    cin>>s;
+    cout << "Enter the srting: " << endl;
+    cin >> s;
     string part;
-    cout<<"enter the part: "<<endl;
-    cin>>part;
+    cout << "enter the part: " << endl;
+    cin >> part;
     print(s);
-    string res=removeOccSubStr(s , part);
+    string res = removeOccSubStr(s, part);
     print(res);
     return 0;
 }
