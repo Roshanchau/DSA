@@ -22,6 +22,12 @@ void insertAtHead(Node *&head, int d)
     head = temp;
 }
 
+void insertAttail(Node *&tail , int d){
+    Node* temp=new Node(d);
+    tail->next=temp;
+    tail=temp;
+}
+
 void display(Node *&head)
 {
     Node *temp = head;
@@ -40,9 +46,15 @@ int main()
     // cout << node1->next << endl;
 
     Node *head = node1;
+    Node *tail=node1;
     display(head);
 
-    insertAtHead(head, 12);
+    // insertAtHead(head, 12);
+    // display(head);
+
+    insertAttail(tail, 12);
+    display(head);
+    insertAttail(tail, 15);
     display(head);
     return 0;
 }
