@@ -15,6 +15,7 @@ public:
     };
 };
 
+// insertion at head
 void insertAtHead(Node *&head, int d)
 {
     Node *temp = new Node(d);
@@ -22,10 +23,25 @@ void insertAtHead(Node *&head, int d)
     head = temp;
 }
 
+// insertion at tail
 void insertAttail(Node *&tail , int d){
     Node* temp=new Node(d);
     tail->next=temp;
     tail=temp;
+}
+
+// insertion at middle
+void insertAtmiddle(Node *&head , int pos , int d){
+    Node *temp=head;
+    int cnt=1;
+    while(cnt< pos-1){
+        temp=temp->next;
+        cnt++;
+    }
+
+    Node * newNode= new Node(d);
+    newNode->next=temp->next;
+    temp->next=newNode;
 }
 
 void display(Node *&head)
@@ -55,6 +71,12 @@ int main()
     insertAttail(tail, 12);
     display(head);
     insertAttail(tail, 15);
+    display(head);
+    insertAttail(tail, 20);
+    display(head);
+    insertAttail(tail, 30);
+    display(head);
+    insertAtmiddle(head, 4, 17);
     display(head);
     return 0;
 }
