@@ -101,6 +101,26 @@ void deletePos(Node * &head , int pos){
     delete curr;
 }
 
+// delete node with value
+void deleteVal(Node * & head , int x){
+    Node * curr=head;
+    Node * prev=NULL;
+    if(curr->data==x){
+        head=head->next;
+        curr->next=NULL;
+        delete curr;
+        return;
+    }
+    while(curr->data!=x){
+        prev=curr;
+        curr=curr->next;
+    }
+    prev->next=curr->next;
+    curr->next=NULL;
+    delete curr;
+}
+
+
 // traverse.
 void display(Node *&head)
 {
@@ -144,6 +164,8 @@ int main()
     deletePos(head, 4);
     display(head);
     deletePos(head, 6);
+    display(head);
+    deleteVal(head , 20);
     display(head);
     return 0;
 }
