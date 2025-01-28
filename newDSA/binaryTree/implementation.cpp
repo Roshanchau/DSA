@@ -41,18 +41,41 @@ void levelOrderTraversal(Node* root){
     }
     queue<Node*> q;
     q.push(root);
+    q.push(NULL);
     while(!q.empty()){
         Node*curr=q.front();
         q.pop();
+        if(curr==NULL){
+            // one level of tree is complete
+            cout<<endl;
+            if(!q.empty()){
+                q.push(NULL);
+            }
+        }
+        else{
         cout<<curr->data<<" ";
         if(curr->left) q.push(curr->left);
         if(curr->right) q.push(curr->right);
+        }
     }
+}
+
+// inOrder Traversal
+void inOrder(Node * root){
+    if(root==NULL){
+        return;
+    }
+    inOrder( root->left);
+
+    cout<<root->data<<" ";
+
+    inOrder(root->right);
 }
 
 int main(){
     Node* root=NULL;
     root=buildTree(root);
     levelOrderTraversal(root);
+    inOrder(root);
     return 0;
 }
