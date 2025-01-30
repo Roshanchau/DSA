@@ -110,6 +110,132 @@ int height(Node * root){
     return max(lheight , rheight)+1;
 }
 
+// insertion in binary tree.
+Node* insertNode(Node * root , int data){
+
+    if( root==NULL){
+        root=new Node(data);
+        return root;
+    }
+
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()){
+        Node * curr= q.front();
+        q.pop();
+
+
+        // first insert in the left
+        if(curr->left!=NULL){
+            q.push(curr->left);
+        }else{
+            curr->left= new Node(data);
+            return root;
+        }
+
+        // insertion in right node
+        if(curr->right!=NULL){
+            q.push(curr->right);
+        }else{
+            curr->right= new Node(data);
+            return root;
+        }
+    }
+}
+
+void deleteDeepest(Node * root , Node * dnode){
+
+    cout<<"inside deepest"<<endl;
+    queue<Node*> q;
+    q.push(root);
+
+    Node* curr;
+
+    while(!q.empty()){
+        curr=q.front();
+        q.pop();
+
+
+        if(curr==dnode){
+            curr=NULL;
+            delete dnode;
+            return;
+        }
+        // deletion from right
+        if(curr->right){
+            if(curr->right==dnode){
+                curr->right=NULL;
+                delete dnode;
+                return;
+            }
+            q.push(curr->right);
+        }
+
+
+        // then left
+        if(curr->left){
+            if(curr->left==dnode){
+                curr->left=NULL;
+                delete dnode;
+                return;
+            }
+            q.push(curr->left);
+        }
+    }
+}
+
+
+// deletion 
+Node * deletion( Node * root , int key){
+    cout<<"inside deletion"<<endl;
+    if(root==NULL){
+        return NULL;
+    }
+
+    if(root->left==NULL && root->right==NULL){
+        if(root->data==key){
+            return NULL;
+        }
+        else{
+            return root;
+        }
+    }
+
+    queue<Node*> q;
+    q.push(root);
+
+    Node* curr;
+    Node* keyNode=NULL;
+    while(!q.empty()){
+        curr=q.front();
+        q.pop();
+
+        if(curr->data==key){
+            keyNode=curr;
+        }
+
+        if(curr->left){
+            q.push(curr->left);
+        }
+
+        if(curr->right){
+            q.push(curr->right);
+        }
+    }
+
+    if(keyNode!=NULL){
+        // get the deepest node data.
+        int x=curr->data;
+
+        // replase the keynode with the deepest node data cuz we cannot just delete the keynode data.
+        keyNode->data=x;
+
+        deleteDeepest(root, curr);
+    }
+    return root;
+}
+
 int main(){
     // Node* root=NULL;
     // root=buildTree(root);
@@ -127,5 +253,10 @@ int main(){
     postOrder(root);
     cout<<endl;
     cout<<"height->"<<height(root)<<endl;
+    root= insertNode(root, 7);
+    levelOrderTraversal(root);
+    root=deletion(root , 2);
+    cout<<"after deletion"<<endl;
+    levelOrderTraversal(root);
     return 0;
 }
